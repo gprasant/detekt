@@ -24,4 +24,17 @@ detekt =
     _isWebKit() &&
     _isMobile()
 
+  isPlatform: (userAgent, platform) ->
+    re = new RegExp platform, "i"
+    re.test parser.parseOS(userAgent)
+
+  isiOS: (userAgent) ->
+    @isPlatform(userAgent, "iOS")
+
+  isAndroid: (userAgent) ->
+    @isPlatform(userAgent, "Android")
+
+  isWindowsPhone: (userAgent) ->
+    @isPlatform(userAgent, "Windows Phone")
+
 module.exports = detekt
