@@ -5,14 +5,14 @@ detekt
 
 ## Available methods
 
-  -> isTouchSupported
-  -> isPlatform
-    -> isiOS
-    -> isAndroid
-    -> isWindowsPhone
-  -> isDevice
-  -> isMobile
-  -> isTablet
+  * isTouchSupported
+  * [isPlatform](#isPlatform)
+    - isiOS
+    - isAndroid
+    - isWindowsPhone
+  * isDevice
+  * isMobile
+  * isTablet
 
 In the following code snippets, ua can be supplied with either navigator.userAgent(client) or req.headers['User-Agent'](server).
 
