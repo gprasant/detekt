@@ -10,6 +10,9 @@ describe "Detekt", ->
     wp:      "Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 920)"
     ipad:    "Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25"
     desktop: "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1667.0 Safari/537.36"
+    S3:      "Mozilla/5.0 (Linux; U; Android 4.1.1; en-us; Samsung Galaxy S3) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"
+    nexus7:  "Mozilla/5.0 (Linux; U; Android 4.2; en-us; Nexus 7 Build/JOP12D) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30"
+    nexus10: "Mozilla/5.0 (Linux; U; Android 4.2; en-us; Nexus 10 Build/JOP12D) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30"
 
 
   describe " => isTouchSupported", ->
@@ -59,3 +62,30 @@ describe "Detekt", ->
   describe " =>  isWindowsPhone", ->
     it "should be true for Nokia lumia 920", ->
       detekt.isWindowsPhone(UA.wp)
+
+  describe ' => isDevice', ->
+    it 'should check iDevices', ->
+      detekt.isDevice(UA.ipad, "iPad").should.be.true
+      detekt.isDevice(UA.ipod , "iPod").should.be.true
+      detekt.isDevice(UA.iphone, "iPhone").should.be.true
+
+    it 'should check for popular android devices', ->
+      nexus = UA.android;
+      detekt.isDevice(nexus, "Nexus").should.be.true
+
+  describe ' => isMobile', ->
+
+    it 'should be true for iPhone and iPods',  ->
+      detekt.isMobile(UA.iphone).should.be.true
+      detekt.isMobile(UA.ipod).should.be.true
+
+    it 'should be false for iPads', ->
+      detekt.isMobile(UA.ipad).should.be.false
+
+  describe ' => isTablet', ->
+    it 'should be true for iPads', ->
+      detekt.isTablet(UA.ipad).should.be.true
+
+    it 'should be true for nexus 7 and 10', ->
+      detekt.isTablet(UA.nexus7).should.be.true
+      detekt.isTablet(UA.nexus10).should.be.true
